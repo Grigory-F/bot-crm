@@ -1,0 +1,251 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/utilities";
+
+/* Overraides default values */
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #65a30d;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+$body-bg: #ebeef2;
+$body-color: #334155;
+$all-link-color: #4c78dd;
+$all-link-color-hover: #1f47a4;
+
+/* Components custom colors */
+
+$system-component: rgba(225, 225, 225, 0.75);
+$block-component: #f6f7f9;
+$block: white;
+
+$setting: rgba(40, 53, 71, 0.3);
+$interface-icons: #2f3c4e;
+$muted: $text-muted;
+
+$colors: (
+    "blue": $blue,
+    "indigo": $indigo,
+    "purple": $purple,
+    "pink": $pink,
+    "red": $red,
+    "orange": $orange,
+    "yellow": $yellow,
+    "green": $green,
+    "teal": $teal,
+    "cyan": $cyan,
+    "white": $white,
+    "gray": $gray-600,
+    "gray-dark": $gray-800,
+);
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "body-bg": $body-bg,
+    "body-color": $body-color,
+    /* Custom */ "system-component": $system-component,
+    "block-component": $block-component,
+    "block": $block,
+    "setting": $setting,
+    "interface-icons": $interface-icons,
+    "link-color": $all-link-color,
+    "link-color-hover": $all-link-color-hover,
+    "muted": $muted,
+);
+
+$grid-breakpoints: (
+    xs: 0,
+    ss: 380px,
+    ms: 480px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1440px,
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px,
+);
+
+/* 
+$width-sizes: (
+    "50": 50px,
+    "100": 100px,
+    "150": 150px,
+    "200": 200px,
+    "250": 200px,
+    "300": 300px,
+    "350": 350px,
+    "400": 400px,
+);
+
+$height-sizes: (
+    "50": 50px,
+    "100": 100px,
+    "150": 150px,
+    "200": 200px,
+    "250": 200px,
+    "300": 300px,
+    "350": 350px,
+    "400": 400px,
+); */
+
+/* =======================MARGINS======================= */
+
+$spacer: 1rem; /* 16px */
+$spacers: (
+    0: 0,
+    1: $spacer * 0.25,
+    2: $spacer * 0.5,
+    3: $spacer * 0.75,
+    4: $spacer * 1.25,
+    5: $spacer * 1.5,
+    6: $spacer * 2,
+    7: $spacer * 2.5,
+    8: $spacer * 3,
+    9: $spacer * 4,
+    10: $spacer * 5,
+    11: $spacer * 6,
+    12: $spacer * 7,
+    13: $spacer * 8,
+    14: $spacer * 9,
+    15: $spacer * 10,
+    16: $spacer * 12,
+    17: $spacer * 14,
+    18: $spacer * 16,
+
+    "base": $spacer,
+);
+
+$gutters: (
+    0: 0,
+    1: $spacer * 0.25,
+    2: $spacer * 0.625,
+    /* 10px */ 3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+);
+
+$rounded-sizes: (
+    0: 0,
+    1: 0.25rem,
+    2: 0.2rem,
+    3: 0.3rem,
+    4: 0.5rem,
+    5: 0.7rem,
+    6: 1rem,
+    7: 1.2rem,
+    8: 1.5rem,
+    9: 1.8rem,
+    10: 2rem,
+    11: 2.2rem,
+    12: 2.5rem,
+    13: 2.8rem,
+    "pill": 50rem,
+    "circle": 50%,
+);
+
+/* =======================FONT======================= */
+
+$font-weight-semi-bold: 600;
+$font-weight-medium: 500;
+
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base;
+$big: $font-size-base * 3;
+$small-custom-font: $font-size-base * 0.875;
+$extra-small-custom-font: $font-size-base * 0.625;
+
+$font-sizes: (
+    1: $h1-font-size,
+    2: $h2-font-size,
+    3: $h3-font-size,
+    4: $h4-font-size,
+    5: $h5-font-size,
+    6: $h6-font-size,
+    7: $big,
+    8: $small-custom-font,
+    9: $extra-small-custom-font,
+);
+
+$headings-margin-bottom: $spacer * 0.5;
+$headings-font-family: null;
+$headings-font-style: null;
+$headings-font-weight: 500;
+$headings-line-height: 1.2;
+$headings-color: null;
+
+$utilities: (
+    "rounded": (
+        property: border-radius,
+        class: rounded,
+        values: $rounded-sizes,
+    ),
+    "font-size": (
+        /* rfs: true, */ property: font-size,
+        responsive: true,
+        class: fs,
+        values: $font-sizes,
+    ),
+    "font-weight": (
+        property: font-weight,
+        class: fw,
+        values: (
+            light: $font-weight-light,
+            lighter: $font-weight-lighter,
+            normal: $font-weight-normal,
+            medium: $font-weight-medium,
+            bold: $font-weight-bold,
+            semi-bold: $font-weight-semi-bold,
+            bolder: $font-weight-bolder,
+        ),
+    ),
+    "color": (
+        property: color,
+        class: text,
+        values:
+            map-merge(
+                map-merge($theme-colors, $colors),
+                (
+                    "muted": $text-muted,
+                    "reset": inherit,
+                )
+            ),
+    ),
+    "cursor": (
+        property: cursor,
+        values: auto default pointer wait text move help not-allowed,
+    ),
+    "background-color": (
+        property: background-color,
+        responsive: true,
+        class: bg,
+        values:
+            map-merge(
+                map-merge($theme-colors, $colors),
+                (
+                    "body": $body-bg,
+                    "transparent": transparent,
+                )
+            ),
+    ),
+);

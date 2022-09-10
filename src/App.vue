@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <div @click="createArticle">awdwwadawdwad</div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      datas: [],
+    };
+  },
+  methods: {
+
+    async createArticle() {
+      axios.get('http://10.247.0.254:5000/api/v1/', {
+        
+      }).then((data) => console.log(data))
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
