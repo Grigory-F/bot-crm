@@ -14,21 +14,20 @@
 .wrapper-content {
     flex: 1;
 }
-.ql-snow {
-    .ql-stroke {
-        stroke: var(--bs-body-color) !important;
-    }
-    .ql-fill {
-        fill: var(--bs-body-color) !important;
-    }
-    .ql-picker {
-        color: var(--bs-body-color) !important;
-    }
-    .ql-picker-options {
-        background-color: var(--bs-body-bg) !important;
-    }
+.sidebar {
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+background-color: #61d2ff;
 }
 
+@media (max-width: 768px) {
+    .sidebar {
+    min-width: 60px;
+    padding: 10px;
+}
+}
 /* .ql-snow {
   .ql-stroke {
     stroke: var(--bs-body-color);
@@ -202,11 +201,15 @@
     letter-spacing: 0.0625rem;
 }
 
+.main-layout {
+    display: flex;
+    max-width: 100%;
+    height: 100vh;
+}
 .main-container {
     display: flex;
     flex-direction: column;
-    flex: 1 0 auto;
-    max-width: 100%;
+    flex: 1;
 }
 
 .block {
