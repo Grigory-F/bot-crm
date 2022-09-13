@@ -8,25 +8,21 @@
     position: relative;
 }
 
-
-
-
 .wrapper-content {
     flex: 1;
 }
 .sidebar {
-    min-width: 300px;
     display: flex;
     flex-direction: column;
     padding: 20px;
-background-color: #61d2ff;
+    background-color: #61d2ff;
 }
 
 @media (max-width: 768px) {
     .sidebar {
-    min-width: 60px;
-    padding: 10px;
-}
+        min-width: 60px;
+        padding: 10px;
+    }
 }
 /* .ql-snow {
   .ql-stroke {

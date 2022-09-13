@@ -83,7 +83,7 @@ export default {
     return {
         textTo: '',
       uploadConfig: {
-        onceImage: true,
+        onceImage: false,
       },
     };
   },

@@ -6,7 +6,7 @@
       </picture>
       <div class="box-images__coverage">
         <div @click="deleteImage(image)" class="box-images__inner-icon">
-          <BaseSystemIcons :name="'close'" :width="30"></BaseSystemIcons>
+          <font-awesome-icon width="30px" :icon="['fas', 'xmark']" />
         </div>
       </div>
     </div>

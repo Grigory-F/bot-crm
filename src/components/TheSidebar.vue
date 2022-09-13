@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar" >
-awdwdawdaw
+    <font-awesome-icon width="30px" :icon="['fas', 'handshake-angle']" />
   </div>
 </template>
 
