@@ -6,7 +6,7 @@ module.exports = defineConfig({
 module.exports = {
   lintOnSave: false,
   publicPath: '/',
-  devServer: {
+ /*  devServer: {
     proxy: {
       '^/api': {
         target: 'http://localhost:3000',
@@ -17,6 +17,6 @@ module.exports = {
         changeOrigin: true
       }
     }
-  },
+  }, */
 }
 
