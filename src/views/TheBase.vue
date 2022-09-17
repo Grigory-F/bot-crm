@@ -11,7 +11,12 @@
           class="d-block text-reset form-control bg-transparent"
           v-model="content.subtitle"
             />-->
-            <textarea v-model="textTo" class="d-block text-reset form-control bg-transparent" name id></textarea>
+            <textarea
+              v-model="textTo"
+              class="d-block text-reset form-control bg-transparent"
+              name
+              id
+            ></textarea>
           </div>
           <div class="mb-5">
             <span class="text-muted">Картинки</span>
@@ -57,8 +62,8 @@
               </tr>
             </thead>
             <tbody class="table-striped">
-              <tr class="">
-                <td  class="p-4">{{textTo}}</td>
+              <tr class>
+                <td class="p-4">{{textTo}}</td>
                 <td class="p-4"></td>
                 <td class="p-4"></td>
                 <td class="p-4"></td>
@@ -81,7 +86,7 @@ export default {
 
   data() {
     return {
-        textTo: '',
+      textTo: "",
       uploadConfig: {
         onceImage: false,
       },

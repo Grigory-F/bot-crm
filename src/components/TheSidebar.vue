@@ -1,38 +1,59 @@
 <template>
-  <div class="sidebar">
-    <font-awesome-icon width="30px" :icon="['fas', 'handshake-angle']" />
-  </div>
+  <aside class="sidebar">
+    <div class="sidebar__top-place"></div>
+    <nav class="sidebar__container">
+      <router-link class="d-block" to="/feedback">
+        <div class="border-1 border-primary d-flex gap-10 align-items-center">
+          <div class="sidebar__inner-icon">
+            <font-awesome-icon width="30px" :icon="['fas', 'handshake-angle']" />
+          </div>
+          <span class="text-uppercase sidebar__sign-menu-item" style="letter-spacing: 2px">ФИДБЕКИ</span>
+        </div>
+      </router-link>
+      <router-link class="d-block" to="/base">
+        <div class="border-1 border-primary d-flex gap-10 align-items-center">
+          <div class="sidebar__inner-icon">
+            <font-awesome-icon width="30px" :icon="['fas', 'envelopes-bulk']" />
+          </div>
+          <span class="text-uppercase sidebar__sign-menu-item" style="letter-spacing: 2px;">РАССЫЛКА</span>
+        </div>
+      </router-link>
+    </nav>
+  </aside>
 </template>
 
 <script>
+/* import axios from 'axios' */
+import FeedbackService from "@/api/FeedbackService.js";
 export default {
   data() {
     return {
       datass: {
-        "answer": "awdd a a dwa wdaw daw w",
-      "type": "question",
-      "status": "closed"
-      }
-    }
+        email: "admin@example.com",
+        password: "admin",
+      },
+    };
   },
+
   methods: {
-    async loade() {
-      /* client_type="TG|VK"&status="waiting|answered|closed"&user_id="21390"&type="undefined|bug|suggestion|question"&page=0&count=20 */
-      let data = await fetch("http://10.247.0.254:5000/api/v1/feedback/?client_type=TG", {
-        method: 'Get',
-        /* body: JSON.stringify(this.datass), */
-        headers: {
-          "Authorization":  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjYzMTA3NzIwfQ.W6X80GaweUAm1PyfhyVu9icVuCKS7hkiRYnavEKFQWk",
-          /* "Content-Type": 'application/json;charset=utf-8' */
-        },
-      });
-      let orData = await data.json(data);
-      console.log(orData);
-    },
+    /* async logit() {
+      FeedbackService.getOne(11)
+        .then((resp) => {
+          console.log(resp.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+      
+    }, */
+    
+   
+    
   },
   mounted() {
-    this.loade();
-  },
+      
+      /* console.log(JSON.stringify(this.datass)); */
+    },
 };
 </script>
 

@@ -12,13 +12,20 @@
 
 <script>
 import Sidebar from "@/components/TheSidebar.vue";
-/* import Footer from "@/components/TheFooter.vue"; */
 import Header from "@/components/TheHeader.vue";
+import { mapActions } from 'vuex'
 export default {
   components: {
     Header,
-    /* Footer, */
     Sidebar
+  },
+  methods: {
+    ...mapActions('feedback',[
+            'requestAll'
+        ]),
+  },
+  mounted() {
+   this.requestAll()
   },
 };
 </script>

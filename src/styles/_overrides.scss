@@ -1,9 +1,9 @@
 a {
-    color: $all-link-color;
-    transition: color .3s ease;
+    color: $link-color;
+    transition: color .2s ease;
     text-decoration: none;
 }
 
 a:hover {
-    color: $all-link-color-hover;
+    color: $link-color-hover;
 }

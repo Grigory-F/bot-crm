@@ -1,20 +1,24 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/utilities";
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/utilities";
+
+:root {
+    --sidebar-opened-xl: 200px;
+    --sidebar-opened-lg: 60px;
+}
 
 /* Overraides default values */
-$primary: #0d6efd;
+$primary: #006874;
 $secondary: #6c757d;
-$success: #65a30d;
-$info: #0dcaf0;
+$thrity: #ed6c44;
+$success: #0aa25d;
+$info: #404040;
 $warning: #ffc107;
 $danger: #dc3545;
-$light: #f8f9fa;
-$dark: #212529;
 $body-bg: #ebeef2;
 $body-color: #334155;
-$all-link-color: #4c78dd;
-$all-link-color-hover: #1f47a4;
+$link-color: #4c78dd;
+$link-color-hover: #1f47a4;
 
 /* Components custom colors */
 
@@ -46,6 +50,7 @@ $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
     "success": $success,
+    "thrity": $thrity,
     "info": $info,
     "warning": $warning,
     "danger": $danger,
@@ -58,10 +63,10 @@ $theme-colors: (
     "block": $block,
     "setting": $setting,
     "interface-icons": $interface-icons,
-    "link-color": $all-link-color,
-    "link-color-hover": $all-link-color-hover,
     "muted": $muted,
 );
+
+$grid-columns: 12;
 
 $grid-breakpoints: (
     xs: 0,
@@ -72,6 +77,8 @@ $grid-breakpoints: (
     lg: 992px,
     xl: 1200px,
     xxl: 1440px,
+    bl: 1600px,
+    bxl: 1800px
 );
 
 $container-max-widths: (
@@ -82,28 +89,19 @@ $container-max-widths: (
     xxl: 1320px,
 );
 
-/* 
-$width-sizes: (
+
+$min-height-sizes: (
     "50": 50px,
     "100": 100px,
     "150": 150px,
+    "170": 170px,
     "200": 200px,
-    "250": 200px,
+    "240": 240px,
+    "290": 290px,
     "300": 300px,
     "350": 350px,
     "400": 400px,
 );
-
-$height-sizes: (
-    "50": 50px,
-    "100": 100px,
-    "150": 150px,
-    "200": 200px,
-    "250": 200px,
-    "300": 300px,
-    "350": 350px,
-    "400": 400px,
-); */
 
 /* =======================MARGINS======================= */
 
@@ -141,26 +139,17 @@ $gutters: (
     5: $spacer * 3,
 );
 
-$rounded-sizes: (
-    0: 0,
-    1: 0.25rem,
-    2: 0.2rem,
-    3: 0.3rem,
-    4: 0.5rem,
-    5: 0.7rem,
-    6: 1rem,
-    7: 1.2rem,
-    8: 1.5rem,
-    9: 1.8rem,
-    10: 2rem,
-    11: 2.2rem,
-    12: 2.5rem,
-    13: 2.8rem,
-    "pill": 50rem,
-    "circle": 50%,
-);
+$border-radius: 0.25rem;
+$border-radius-sm: 0.2rem;
+$border-radius-md: 25px;
+$border-radius-lg: 30px;
+$border-radius-xl: 0.7rem;
+$border-radius-xxl: 40px;
+$border-radius-pill: 50rem;
 
 /* =======================FONT======================= */
+
+/* $font-family-sans-serif: Geometria; */
 
 $font-weight-semi-bold: 600;
 $font-weight-medium: 500;
@@ -173,18 +162,20 @@ $h5-font-size: $font-size-base * 1.25;
 $h6-font-size: $font-size-base;
 $big: $font-size-base * 3;
 $small-custom-font: $font-size-base * 0.875;
+$medium-small-custom-font: $font-size-base * 0.75;
 $extra-small-custom-font: $font-size-base * 0.625;
 
 $font-sizes: (
-    1: $h1-font-size,
-    2: $h2-font-size,
-    3: $h3-font-size,
-    4: $h4-font-size,
-    5: $h5-font-size,
-    6: $h6-font-size,
-    7: $big,
+    1: $big,
+    2: $h1-font-size,
+    3: $h2-font-size,
+    4: $h3-font-size,
+    5: $h4-font-size,
+    6: $h5-font-size,
+    7: $h6-font-size,
     8: $small-custom-font,
-    9: $extra-small-custom-font,
+    9: $medium-small-custom-font,
+    10: $extra-small-custom-font,
 );
 
 $headings-margin-bottom: $spacer * 0.5;
@@ -194,21 +185,85 @@ $headings-font-weight: 500;
 $headings-line-height: 1.2;
 $headings-color: null;
 
+
+$max-value-width: 100;
+$begin-width: 0;
+$spread-width: 10;
+
+$max-value-width-percent: 100;
+$begin-width-percent: 0;
+$spread-width-percent: 10;
+
+// GAP VALUES
+
+$max-gap: 100;
+$begin-gap: 5;
+$spread-gap: 5;
+
+
+@function generate-sizes($max-value-size, $spread-value, $begin-from-iter,$unitType,  $auto-flag: false, $none-flag: false) {
+    $size-map-cutom: ();
+    @if $auto-flag {
+        $size-map-cutom: map-merge(
+                $size-map-cutom,
+                (
+                    'auto': auto,
+                )
+            );
+    }
+    @if $none-flag {
+        $size-map-cutom: map-merge(
+                $size-map-cutom,
+                (
+                    'none': none,
+                )
+            );
+    }
+    @while $begin-from-iter <= $max-value-size {
+        @if $begin-from-iter % $spread-value == 0 {
+            $size-map-cutom: map-merge(
+                $size-map-cutom,
+                (
+                    $begin-from-iter: #{$begin-from-iter}#{$unitType},
+                )
+            );
+            
+        }
+        $begin-from-iter: $begin-from-iter + 1;
+    }
+    @return $size-map-cutom;
+}
+
 $utilities: (
     "rounded": (
         property: border-radius,
         class: rounded,
-        values: $rounded-sizes,
+        responsive: true,
+        values: (
+            null: $border-radius,
+            0: 0,
+            1: $border-radius-sm,
+            2: $border-radius,
+            3: $border-radius-lg,
+            4: $border-radius-md,
+            5: $border-radius-xl,
+            6: $border-radius-xxl,
+            circle: 50%,
+            pill: $border-radius-pill,
+        ),
     ),
     "font-size": (
         /* rfs: true, */ property: font-size,
         responsive: true,
         class: fs,
+        rfs:false,
         values: $font-sizes,
     ),
     "font-weight": (
         property: font-weight,
         class: fw,
+        responsive: true,
+        
         values: (
             light: $font-weight-light,
             lighter: $font-weight-lighter,
@@ -217,6 +272,15 @@ $utilities: (
             bold: $font-weight-bold,
             semi-bold: $font-weight-semi-bold,
             bolder: $font-weight-bolder,
+        ),
+    ),
+    "border-bottom": (
+        property: border-bottom,
+        responsive: true,
+        state: hover,
+        values: (
+            null: $border-width solid $border-color,
+            0: 0,
         ),
     ),
     "color": (
@@ -235,10 +299,16 @@ $utilities: (
         property: cursor,
         values: auto default pointer wait text move help not-allowed,
     ),
+    "min-height": (
+        property: min-height,
+        class: min-h,
+        responsive: true,
+        values: $min-height-sizes,
+    ),
     "background-color": (
         property: background-color,
-        responsive: true,
         class: bg,
+        state: hover,
         values:
             map-merge(
                 map-merge($theme-colors, $colors),
@@ -247,5 +317,34 @@ $utilities: (
                     "transparent": transparent,
                 )
             ),
+    ),
+    "gap": (
+        property: gap,
+        class: gap,
+        responsive: true,
+        values: generate-sizes($max-gap, $begin-gap, $spread-gap,'px', false, true),
+    ),
+    "max-width": (
+        property: max-width,
+        class: mw,
+        values: (
+            25: 25%,
+            50: 50%,
+            75: 75%,
+            100: 100%,
+            auto: auto,
+        ),
+    ),
+    "width": (
+        property: width,
+        class: w,
+        responsive: true,
+        values: generate-sizes($max-value-width, $spread-width, $begin-width, 'px', true),
+    ),
+    "width percent": (
+        property: width,
+        class: wp,
+        responsive: true,
+        values: generate-sizes($max-value-width-percent, $spread-width-percent, $begin-width-percent, '%', true),
     ),
 );

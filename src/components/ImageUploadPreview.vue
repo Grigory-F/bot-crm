@@ -25,7 +25,7 @@
       <div
         v-if="!loading"
         class="drop-zone__sign fs-2 text-muted text-center"
-      >{{ !arrayFiles.length ? "Drop or select files" : '+'}}</div>
+      >{{ !arrayFiles.length ? "Перетащите или нажмите" : '+'}}</div>
       <font-awesome-icon v-if="loading" :icon="['fas', 'circle-notch']" class="fa-spin" />
     </label>
   </div>
