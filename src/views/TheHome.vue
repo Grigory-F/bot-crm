@@ -24,8 +24,9 @@ export default {
             'requestAll'
         ]),
   },
-  mounted() {
-   this.requestAll()
-  },
+  beforeMount() {this.requestAll()},
+  /* mounted() {
+   
+  }, */
 };
 </script>

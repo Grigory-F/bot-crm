@@ -2,7 +2,6 @@ import http from '@/http-common.js'
 
 class AuthService {
     getAll(page, count, clientType, status, type, userId) {
-        /* client_type = "TG|VK" & status="waiting|answered|closed" & user_id="21390" & type="undefined|bug|suggestion|question" & page=0 & count=20 */
         return http.get('/feedback/',
             {
                 params: {

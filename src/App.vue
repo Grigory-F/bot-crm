@@ -5,20 +5,19 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
       datas: [],
+      asss: "admin@example.com",
+      bsss: "admin",
     };
   },
-  methods: {
-
+  mounted() {
     
   },
 };
 </script>
 
 <style lang="scss">
-
 </style>

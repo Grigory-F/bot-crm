@@ -8,7 +8,15 @@ export const feedbackModule = {
     }),
 
     getters: {
-        str: state => state.status
+        /* getStatusCount(store, param) {
+            let countStatus = 0
+            store.data.forEach(element => {
+                if (element.status === "waiting") {
+                    countStatus++
+                }
+            });
+            return countStatus
+        } */
     },
     mutations: {
         /* auth_request(state) {
@@ -28,9 +36,9 @@ export const feedbackModule = {
         edit_data(state, content) {
             let indexed = state.data.findIndex(x => x.id == content.id)
             state.data[indexed] = content
-        }, 
+        },
         fill_data(state, fetchedData) {
-            state.data = [ ...fetchedData ]
+            state.data = [...fetchedData]
         },
         change_status(state, chengedData) {
             state.status = chengedData
@@ -50,7 +58,7 @@ export const feedbackModule = {
             commit('change_status', 'loading')
             FeedbackService.update(content, content.id).then(data => {
                 commit('edit_data', content)
-                
+
             }).catch(error => {
                 commit('change_status', 'error')
                 console.log(error);

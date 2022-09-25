@@ -5,6 +5,7 @@
       <router-link class="d-block" to="/feedback">
         <div class="border-1 border-primary d-flex gap-10 align-items-center">
           <div class="sidebar__inner-icon">
+            <div v-if="getStatusCount != 0" class="sidebar__count-message">{{getStatusCount}}</div>
             <font-awesome-icon width="30px" :icon="['fas', 'handshake-angle']" />
           </div>
           <span class="text-uppercase sidebar__sign-menu-item" style="letter-spacing: 2px">ФИДБЕКИ</span>
@@ -24,6 +25,7 @@
 
 <script>
 /* import axios from 'axios' */
+import { mapActions, mapState, mapMutations } from "vuex";
 import FeedbackService from "@/api/FeedbackService.js";
 export default {
   data() {
@@ -32,28 +34,36 @@ export default {
         email: "admin@example.com",
         password: "admin",
       },
+      messagesCount: 0,
+      newDatas: [
+        { a: "stst", c: "wwwws" },
+        { a: "stst", c: "wwwsws" },
+        /* { a: "wait", c: "wwwws" }, */
+        { a: "stst", c: "wwwws" },
+      ],
     };
   },
-
+  computed: {
+    ...mapState("feedback", ["data"]), 
+    getStatusCount() {
+            let countStatus = 0
+            this.data.forEach(element => {
+                if (element.status === "waiting") {
+                    countStatus++
+                }
+            });
+            if (countStatus >= 10) {
+              return "10+"
+            }
+            return countStatus
+        }
+  },
   methods: {
-    /* async logit() {
-      FeedbackService.getOne(11)
-        .then((resp) => {
-          console.log(resp.data);
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
-      
-    }, */
-    
    
-    
   },
   mounted() {
-      
-      /* console.log(JSON.stringify(this.datass)); */
-    },
+  },
+  
 };
 </script>
 

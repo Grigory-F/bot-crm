@@ -2,7 +2,6 @@ import http from '@/http-common.js'
 
 class FeedbackService {
     getAll(page, count, clientType, status, type, userId) {
-        /* client_type = "TG|VK" & status="waiting|answered|closed" & user_id="21390" & type="undefined|bug|suggestion|question" & page=0 & count=20 */
         return http.get('/feedback/',
             {
                 params: {
@@ -14,8 +13,7 @@ class FeedbackService {
                     "user_id": userId,
                 },
                 headers: {
-                    Authorization:
-                        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjYzNTM0OTMwfQ.LQuJNKopq_E0biN9vCRn5KKMeORh1qGGX0MeFMon0xg",
+                    Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY0Mzc5OTYxfQ.ThovbVgxSDyfk1z-DA4CcNlNf1ljlgBNbrC5GZR63qk",
                     "Content-Type": "application/json"
                 },
             }
@@ -24,8 +22,7 @@ class FeedbackService {
     getOne(id) {
         return http.get(`/feedback/${id}/`, /* { params: { 'id': id } } */{
             headers: {
-                Authorization:
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjYzNTM0OTMwfQ.LQuJNKopq_E0biN9vCRn5KKMeORh1qGGX0MeFMon0xg",
+                Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY0Mzc5OTYxfQ.ThovbVgxSDyfk1z-DA4CcNlNf1ljlgBNbrC5GZR63qk",
                 "Content-Type": "application/json"
             },
         })
@@ -41,8 +38,7 @@ class FeedbackService {
 
         }, {
             headers: {
-                Authorization:
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjYzNTM0OTMwfQ.LQuJNKopq_E0biN9vCRn5KKMeORh1qGGX0MeFMon0xg",
+                Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY0Mzc5OTYxfQ.ThovbVgxSDyfk1z-DA4CcNlNf1ljlgBNbrC5GZR63qk",
                 "Content-Type": "application/json"
             },
         })
