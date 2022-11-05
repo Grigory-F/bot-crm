@@ -200,7 +200,6 @@ $max-gap: 100;
 $begin-gap: 5;
 $spread-gap: 5;
 
-
 @function generate-sizes($max-value-size, $spread-value, $begin-from-iter,$unitType,  $auto-flag: false, $none-flag: false) {
     $size-map-cutom: ();
     @if $auto-flag {

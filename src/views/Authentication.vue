@@ -25,7 +25,7 @@
                     <div class="mb-4">
                       <div class="position-relative">
                         <input
-                          :type="showPassword ? 'text': 'password'"
+                          :type="showPassword ? 'text' : 'password'"
                           class="form-control form-control-lg mb-2"
                           placeholder="Password"
                           v-model="password"
@@ -33,16 +33,36 @@
                           autocomplete="on"
                           ref="passwordInput"
                         />
-                        <div style="width: 50px" class="d-flex cursor-pointer end-0 h-100 top-0 position-absolute" @click="showPassword = !showPassword">
-                          <font-awesome-icon v-if="!showPassword" class="m-auto" icon="fa-regular fa-eye" />
-                          <font-awesome-icon v-if="showPassword" class="m-auto" icon="fa-regular fa-eye-slash" />
+                        <div
+                          style="width: 50px"
+                          class="
+                            d-flex
+                            cursor-pointer
+                            end-0
+                            h-100
+                            top-0
+                            position-absolute
+                          "
+                          @click="showPassword = !showPassword"
+                        >
+                          <font-awesome-icon
+                            v-if="!showPassword"
+                            class="m-auto"
+                            icon="fa-regular fa-eye"
+                          />
+                          <font-awesome-icon
+                            v-if="showPassword"
+                            class="m-auto"
+                            icon="fa-regular fa-eye-slash"
+                          />
                         </div>
                       </div>
 
                       <span
                         class="text-danger fw-medium fs-8"
                         aria-errormessage="Your password must be at least 5 characters long"
-                      >Неверный логин или пароль</span>
+                        >Неверный логин или пароль</span
+                      >
                     </div>
                     <label class="form-check mb-4">
                       <input type="checkbox" class="form-check-input" />
@@ -50,8 +70,13 @@
                     </label>
                   </div>
 
-                      <router-link to="/" style="width: 100%" class="btn btn-primary mb-4">Войти</router-link>
-
+                  <div
+                    @click="loginOn"
+                    style="width: 100%"
+                    class="btn btn-primary mb-4"
+                  >
+                    Войти
+                  </div>
                 </form>
               </div>
             </div>
@@ -63,6 +88,7 @@
 </template>
 
 <script>
+import http from '@/http-common.js'
 export default {
   data() {
     return {
@@ -72,19 +98,27 @@ export default {
     };
   },
   methods: {
-    
-    /* loginOn: function () {
-      const login = this.login
-      const password = this.password
-      console.log(login, password)
-      this.$store.dispatch('login', { login, password })
-        .then(() => this.$router.push('/'))
-        .catch(err => console.log(err))
-    } */
+    loginOn: function () {
+      http
+        .post(
+          "auth/",
+          JSON.stringify({
+            "email": `${this.login}`,
+            "password": `${this.password}`,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then(function (response) {
+          console.log(response.data.token);
+        }).catch(error => {
+          console.log(error);
+          
+        })
+    },
   },
-  /* 
-  
-  mounted () {
-  } */
 };
 </script>

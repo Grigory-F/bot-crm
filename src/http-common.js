@@ -2,8 +2,8 @@
 import axios from 'axios'
 
 const httpInstance = axios.create({
-  /* mode: 'no-cors', */
-  baseURL: process.env.VUE_APP_API_LINK
+  baseURL: process.env.VUE_APP_API_LINK,
+  headers: {"Content-Type": "application/json"}
 })
 
 /* Vue.prototype.$http = httpInstance */
