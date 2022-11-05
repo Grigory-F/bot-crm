@@ -1,61 +1,47 @@
 import http from '@/http-common.js'
+import AuthService from "@/api/AuthService.js";
 export const authModule = {
     namespaced: true,
     state: () => ({
-        /* status: '',
+        status: '',
+        loggedStatus: false,
         token: localStorage.getItem('token') || '',
-        user: {} */
+
     }),
 
     getters: {
-        /* isLoggedIn: state => !!state.token,
-        authStatus: state => state.status */
+
     },
     mutations: {
-        /* auth_request(state) {
-            state.status = 'loading'
+        auth_request(state, status) {
+            state.status = status
         },
-        auth_success(state, token, user) {
+        auth_success(state, token) {
             state.status = 'success'
             state.token = token
-            state.user = user
+            state.loggedStatus = true
         },
-        auth_error(state) {
-            state.status = 'error'
+        auth_error(state, status) {
+            state.status = status
         },
         logout(state) {
             state.status = ''
             state.token = ''
-        } */
+        }
     },
     actions: {
-        /* login({ commit }, user) {
-            return new Promise((resolve, reject) => {
-                commit('auth_request')
-                http.post('/auth/login', { data: user })
-                    .then(resp => {
-                        const token = resp.data.token
-                        const user = resp.data.user
-                        localStorage.setItem('token', token)
-                        http.defaults.headers.common.Authorization = token
-                        commit('auth_success', token, user)
-                        resolve(resp)
-                    })
-                    .catch(err => {
-                        commit('auth_error')
-                        localStorage.removeItem('token')
-                        reject(err)
-                        console.log(err.response)
-                    })
+        auth({ commit }, authData) {
+            commit('auth_request', 'loading')
+            AuthService.auth(authData).then(data => {
+                commit('auth_success', data.token)
+            }).catch(error => {
+                commit('auth_error', 'error')
             })
         },
         logout({ commit }) {
-            return new Promise((resolve) => {
-                commit('logout')
-                localStorage.removeItem('token')
-                delete http.defaults.headers.common.Authorization
-                resolve()
-            })
-        } */
+            commit('logout')
+            localStorage.removeItem('token')
+            delete http.defaults.headers.common.Authorization
+        } 
     }
 }

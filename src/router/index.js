@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index.js'
 import Home from '@/views/TheHome.vue'
 import Base from '@/views/TheBase.vue'
 import Feedback from '@/views/TheFeedback.vue'
@@ -19,7 +20,9 @@ const routes = [
     name: 'Home',
     component: Home,
     redirect: '/base',
-
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: '/base',
@@ -44,6 +47,20 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/auth')
+  } else {
+    next()
+  }
 })
 
 export default router

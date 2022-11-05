@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import http from '@/http-common.js'
+import AuthService from '@/api/AuthService.js'
 export default {
   data() {
     return {
@@ -98,7 +98,18 @@ export default {
     };
   },
   methods: {
+
     loginOn: function () {
+      AuthService.auth(JSON.stringify({
+            "email": `${this.login}`,
+            "password": `${this.password}`,
+          }))
+        .then(() => this.$router.push('/')
+        )
+        .catch(err => console.log(err))
+    },
+
+    /* loginOn: function () {
       http
         .post(
           "auth/",
@@ -118,7 +129,7 @@ export default {
           console.log(error);
           
         })
-    },
+    }, */
   },
 };
 </script>
