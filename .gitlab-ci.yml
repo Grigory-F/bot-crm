@@ -23,7 +23,7 @@ build site:
       - dist
   when: always
   only:
-    - gitlab-cicd
+    - main
 
 
 #deploy staging:
@@ -33,7 +33,7 @@ build site:
 #  script:
 #    - scp -P22 -r dist $PRODUCTION_USER@$PRODUCTION_HOST:$PROJECT_PATH_STAGING
 #  only:
-#    - gitlab-cicd
+#    - main
 
 
 deploy production:
@@ -43,4 +43,4 @@ deploy production:
   script:
     - scp -P22 -r dist $PRODUCTION_USER@$PRODUCTION_HOST:$PROJECT_PATH
   only:
-    - gitlab-cicd
+    - main
