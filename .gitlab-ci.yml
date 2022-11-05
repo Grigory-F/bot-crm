@@ -1,0 +1,46 @@
+stages:
+  - build
+#  - deploy_staging
+  - deploy_production
+
+
+before_script:
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  - apk update && apk upgrade && apk add --no-cache openssh git bash libpng-dev g++ gcc autoconf automake libtool nasm make
+
+
+build site:
+  image: node:12-alpine
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist
+  when: always
+  only:
+    - gitlab-cicd
+
+
+#deploy staging:
+#  image: alpine
+#  stage: deploy_staging
+#  when: on_success
+#  script:
+#    - scp -P22 -r dist $PRODUCTION_USER@$PRODUCTION_HOST:$PROJECT_PATH_STAGING
+#  only:
+#    - gitlab-cicd
+
+
+deploy production:
+  image: alpine
+  stage: deploy_production
+  when: on_success
+  script:
+    - scp -P22 -r dist $PRODUCTION_USER@$PRODUCTION_HOST:$PROJECT_PATH
+  only:
+    - gitlab-cicd
