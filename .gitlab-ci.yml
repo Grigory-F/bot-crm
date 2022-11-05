@@ -1,7 +1,12 @@
+variables:
+  BACKEND_REPO: &BACKEND_REPO it_club_dev/study-bot/study-bot-back
+
+
 stages:
   - build
 #  - deploy_staging
   - deploy_production
+  - restart_production
 
 
 before_script:
@@ -42,5 +47,18 @@ deploy production:
   when: on_success
   script:
     - scp -P22 -r dist $PRODUCTION_USER@$PRODUCTION_HOST:$PROJECT_PATH
+  only:
+    - main
+
+
+restart production:
+  stage: restart_production
+  when: on_success
+  variables:
+    ENVIRONMENT: $CI_COMMIT_BRANCH
+  trigger:
+    project: *BACKEND_REPO
+    branch: restart
+    strategy: depend
   only:
     - main
