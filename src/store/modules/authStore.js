@@ -36,11 +36,12 @@ export const authModule = {
         auth({ commit }, authData) {
             commit('auth_request', 'loading')
             AuthService.auth(JSON.stringify(authData)).then(data => {
-                console.log(data.data.token);
-                
+                console.log(data);
                 commit('auth_success',data.data.token)
                 router.push('/')
             }).catch(error => {
+                console.log(error);
+
                 commit('auth_error', 'error')
             })
         },

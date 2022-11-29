@@ -1,4 +1,3 @@
-import http from '@/http-common.js'
 import FeedbackService from "@/api/FeedbackService.js";
 export const feedbackModule = {
     namespaced: true,
@@ -8,31 +7,8 @@ export const feedbackModule = {
     }),
 
     getters: {
-        /* getStatusCount(store, param) {
-            let countStatus = 0
-            store.data.forEach(element => {
-                if (element.status === "waiting") {
-                    countStatus++
-                }
-            });
-            return countStatus
-        } */
     },
     mutations: {
-        /* auth_request(state) {
-            state.status = 'loading'
-        },
-        auth_success(state, token, user) {
-            state.status = 'success'
-            state.token = token
-            state.user = user
-        },
-        
-        logout(state) {
-            state.status = ''
-            state.token = ''
-            
-        } */
         edit_data(state, content) {
             let indexed = state.data.findIndex(x => x.id == content.id)
             state.data[indexed] = content
