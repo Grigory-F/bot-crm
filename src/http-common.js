@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { renderSync } from 'sass';
+
 
 const httpInstance = axios.create({
   baseURL: process.env.VUE_APP_API_LINK,
