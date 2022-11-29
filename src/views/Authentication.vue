@@ -10,15 +10,15 @@
             <div class="block-content">
               <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
                 <h1>Админ Панель</h1>
-
-                <form @submit.prevent="loginOn">
+                <!-- @submit.prevent="loginOn" -->
+                <form>
                   <div class="pt-4">
                     <div class="mb-4">
                       <input
                         type="login"
                         class="form-control form-control-lg mb-2"
                         placeholder="Логин"
-                        v-model="login"
+                        v-model="email"
                         aria-label="Login"
                       />
                     </div>
@@ -60,14 +60,15 @@
 
                       <span
                         class="text-danger fw-medium fs-8"
-                        aria-errormessage="Your password must be at least 5 characters long"
+                        v-if="status == 'error'"
+                        aria-errormessage="Неверный логин или пароль"
                         >Неверный логин или пароль</span
                       >
                     </div>
-                    <label class="form-check mb-4">
+                    <!-- <label class="form-check mb-4">
                       <input type="checkbox" class="form-check-input" />
                       <span>Запоминть меня</span>
-                    </label>
+                    </label> -->
                   </div>
 
                   <div
@@ -88,48 +89,27 @@
 </template>
 
 <script>
-import AuthService from '@/api/AuthService.js'
+import { mapActions, mapState } from "vuex";
+
 export default {
   data() {
     return {
-      login: null,
+      email: null,
       password: null,
       showPassword: false,
     };
   },
+  computed: {
+    ...mapState("auth", ["status"]),
+  },
   methods: {
-
-    loginOn: function () {
-      AuthService.auth(JSON.stringify({
-            "email": `${this.login}`,
-            "password": `${this.password}`,
-          }))
-        .then(() => this.$router.push('/')
-        )
-        .catch(err => console.log(err))
+    ...mapActions("auth", ["auth"]),
+    loginOn() {
+      this.auth({
+        email: this.email,
+        password: this.password,
+      });
     },
-
-    /* loginOn: function () {
-      http
-        .post(
-          "auth/",
-          JSON.stringify({
-            "email": `${this.login}`,
-            "password": `${this.password}`,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then(function (response) {
-          console.log(response.data.token);
-        }).catch(error => {
-          console.log(error);
-          
-        })
-    }, */
   },
 };
 </script>

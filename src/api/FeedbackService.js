@@ -4,7 +4,7 @@ class FeedbackService {
     basePathApiService = '/feedback/'
     getAll(page, count, clientType, status, type, userId) {
         
-        return http.get(basePathApiService,
+        return http.get(this.basePathApiService,
             {
                 params: {
                     "page": page,
@@ -15,22 +15,22 @@ class FeedbackService {
                     "user_id": userId,
                 },
                 headers: {
-                    Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY3ODkzNzM4fQ.P8MolruSYG_QOqE_RTEGScCWf_iW-i-8X1rh2DlWo9Y",
+                    Authorization: localStorage.getItem('token'),
                     "Content-Type": "application/json"
                 },
             }
         )
     }
     getOne(id) {
-        return http.get(basePathApiService + `${id}/`, {
+        return http.get(this.basePathApiService + `${id}/`, {
             headers: {
-                Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY3ODkzNzM4fQ.P8MolruSYG_QOqE_RTEGScCWf_iW-i-8X1rh2DlWo9Y",
+                Authorization: localStorage.getItem('token'),
                 "Content-Type": "application/json"
             },
         })
     }
     update(content, id) {
-        return http.put(basePathApiService + `${id}/`, {
+        return http.put(this.basePathApiService + `${id}/`, {
 
 
             "answer": content.answer || "",
@@ -40,7 +40,7 @@ class FeedbackService {
 
         }, {
             headers: {
-                Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY3ODkzNzM4fQ.P8MolruSYG_QOqE_RTEGScCWf_iW-i-8X1rh2DlWo9Y",
+                Authorization: localStorage.getItem('token'),
                 "Content-Type": "application/json"
             },
         })

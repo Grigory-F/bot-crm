@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store/index.js'
+/* import store from '../store/index.js' */
+import { mapState } from "vuex";
 import Home from '@/views/TheHome.vue'
 import Base from '@/views/TheBase.vue'
 import Feedback from '@/views/TheFeedback.vue'
@@ -53,7 +54,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isLoggedIn) {
+    const logged = mapState('auth', ['loggedStatus'])
+    if (logged) {
       next()
       return
     }

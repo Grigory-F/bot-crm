@@ -1,11 +1,12 @@
 import http from '@/http-common.js'
 import AuthService from "@/api/AuthService.js";
+import router from '@/router/index.js'
 export const authModule = {
     namespaced: true,
     state: () => ({
         status: '',
         loggedStatus: false,
-        token: localStorage.getItem('token') || '',
+        token: '',
 
     }),
 
@@ -18,6 +19,7 @@ export const authModule = {
         },
         auth_success(state, token) {
             state.status = 'success'
+            localStorage.setItem('token', token)
             state.token = token
             state.loggedStatus = true
         },
@@ -27,13 +29,17 @@ export const authModule = {
         logout(state) {
             state.status = ''
             state.token = ''
+            state.loggedStatus = false
         }
     },
     actions: {
         auth({ commit }, authData) {
             commit('auth_request', 'loading')
-            AuthService.auth(authData).then(data => {
-                commit('auth_success', data.token)
+            AuthService.auth(JSON.stringify(authData)).then(data => {
+                console.log(data.data.token);
+                
+                commit('auth_success',data.data.token)
+                router.push('/')
             }).catch(error => {
                 commit('auth_error', 'error')
             })
