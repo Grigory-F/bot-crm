@@ -3,7 +3,6 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-
 import style from '@/styles/app.scss'
 
 
@@ -26,6 +25,5 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   router,
   store,
-  
   render: h => h(App)
 }).$mount('#app')
