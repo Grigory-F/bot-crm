@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     checkMethod() {
-      console.log(this.dataToSend, this.dataToSend.whereTo.split(','));
+      console.log(this.dataToSend, this.dataToSend.whereTo.split(","));
     },
   },
 };
