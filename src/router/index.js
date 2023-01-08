@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { mapState } from "vuex";
 import Home from '@/views/TheHome.vue'
-import Base from '@/views/TheBase.vue'
+import Mailing from '@/views/Mailing.vue'
 import Feedback from '@/views/TheFeedback.vue'
 import Auth from '@/views/Authentication.vue'
 import FeedbackDetails from '@/views/FeedbackDetails.vue'
@@ -28,8 +28,8 @@ const routes = [
     children: [
       {
         path: '/base',
-        name: 'Base',
-        component: Base
+        name: 'Mailing',
+        component: Mailing
       },
       {
         path: '/feedback',
