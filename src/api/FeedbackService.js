@@ -14,20 +14,11 @@ class FeedbackService {
                     "type": type,
                     "user_id": userId,
                 },
-                headers: {
-                    Authorization: localStorage.getItem('token'),
-                    "Content-Type": "application/json"
-                },
             }
         )
     }
-    getOne(id) {
-        return http.get(this.basePathApiService + `${id}/`, {
-            headers: {
-                Authorization: localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
-        })
+    getOne( id) {
+        return http.get(this.basePathApiService + `${id}/`)
     }
     update(content, id) {
         return http.put(this.basePathApiService + `${id}/`, {
@@ -38,11 +29,6 @@ class FeedbackService {
             "status": content.status
 
 
-        }, {
-            headers: {
-                Authorization: localStorage.getItem('token'),
-                "Content-Type": "application/json"
-            },
         })
     }
 }

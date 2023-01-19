@@ -52,8 +52,11 @@ export default {
     changeImages (e) {
       this.loading = !this.loading
       this.unraw = e.target.files
+      console.log(this.unraw);
+      
       this.files = Array.from(e.target.files)
       this.files.forEach((file) => {
+        console.log(file);
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = (event) => {
@@ -65,34 +68,16 @@ export default {
       })
       this.loading = !this.loading
     },
-    async onsubmit () {
-      const formData = new FormData()
-      this.unraw.forEach((thatFile, index) => {
-        const file = this.unraw[index]
-        formData.append(thatFile.name, file)
-      })
-
-      axios
-        .post('/api/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then(() => {
-          console.log('SUCCESS!!')
-        })
-    },
+    
+    
     deleteImage (images) {
       this.arrayFiles.splice(this.arrayFiles.indexOf(images), 1)
     }
   },
   computed: {
     paramDeterm: function () {
-      if (this.arrayFiles.length && this.uploadConfig.onceImage) {
-        return true
-      } else {
-        return false
-      }
+      this.arrayFiles.length && this.uploadConfig.onceImage ? true : false
+      
     }
   }
 }

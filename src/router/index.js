@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { mapState } from "vuex";
 import Home from '@/views/TheHome.vue'
 import Mailing from '@/views/Mailing.vue'
 import Feedback from '@/views/TheFeedback.vue'
@@ -55,14 +54,14 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-
+/* 
     const logged = localStorage.getItem('token')
     
-    if (logged) {
+    if (logged) { */
       next()
-      return
+      /* return
     }
-    next('/auth')
+    next('/auth') */
   } else {
     next()
   }

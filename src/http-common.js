@@ -1,18 +1,37 @@
-
-import axios from 'axios'
+import axios from "axios"; 
+import router from "./router";
+import store from './store'
 
 const httpInstance = axios.create({
   baseURL: process.env.VUE_APP_API_LINK,
-  headers: {"Content-Type": "application/json"}
-})
+  headers: { "Content-Type": "application/json" },
+});
 
- /* const configRequest = config => {
-  config.headers.Authorization = localStorage.getItem('token')
-  return config;
-} */
+httpInstance.interceptors.request.use(
+  function (config) {
+    if (config.url != "auth/") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers.common["Authorization"] = token;
+      } else {
+        router.push('auth/')
+      }
+    }
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
 httpInstance.interceptors.response.use((response) => {
+  console.log(response.data);
+  return response;
+}, function (error) {
+  if (error.response.status > 400) {
 
-  return response
-}) 
-export default httpInstance
+    router.replace({ path: '/auth' })
+  }
+  return Promise.reject(error);
+});
+export default httpInstance;

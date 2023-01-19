@@ -8,7 +8,7 @@
             <span class="text-muted">Сообщение</span>
             <textarea
               v-model="dataToSend.mail"
-              class="d-block text-reset form-control bg-transparent"
+              class="d-block text-reset form-control"
             ></textarea>
           </div>
           <div class="mb-5">

@@ -30,11 +30,20 @@ export const feedbackModule = {
                 console.log(error);
             })
         },
+        requestOne({ commit, state }, id) {
+            commit('change_status', 'loading')
+            FeedbackService.getOne(id).then(data => {
+                commit('edit_data', data.data, id)
+                commit('change_status', 'success')
+            }).catch(error => {
+                commit('change_status', 'error')
+                console.log(error);
+            })
+        },
         editOne({ commit }, content) {
             commit('change_status', 'loading')
             FeedbackService.update(content, content.id).then(data => {
                 commit('edit_data', content)
-
             }).catch(error => {
                 commit('change_status', 'error')
                 console.log(error);

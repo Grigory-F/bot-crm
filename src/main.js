@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import style from '@/styles/app.scss'
 
+import {  Dropdown  } from "bootstrap";
+
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -25,5 +27,11 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   router,
   store,
+  beforeCreate() {this.$store.commit('initialiseStore');},
   render: h => h(App)
 }).$mount('#app')
+
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem('store', JSON.stringify(state));
+})
