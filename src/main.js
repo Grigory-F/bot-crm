@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import style from '@/styles/app.scss'
 
-import {  Dropdown  } from "bootstrap";
+import {  Dropdown, Modal  } from "bootstrap";
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'

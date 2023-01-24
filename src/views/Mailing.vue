@@ -2,8 +2,8 @@
   <div class="content">
     <h1>Рассылка</h1>
     <div class="row">
-      <div class="col-xl-6">
-        <div class="d-flex flex-column gap-30px">
+      <div class="col-12">
+        <div class="d-flex flex-column" style="max-width: 900px;">
           <div class="d-flex flex-column mb-5">
             <span class="text-muted">Сообщение</span>
             <textarea
@@ -78,25 +78,25 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-6">
+      <div class="col">
         <div class="table-responsive">
           <table class="table table-borderless table-striped table-responsive">
             <thead>
               <tr class="text-muted">
                 <th scope="col">ID</th>
                 <th scope="col">Отправитель</th>
-                <th scope="col">Рассылка</th>
+                <th scope="col">Платформы</th>
                 <th scope="col">Время</th>
                 <th scope="col">Подробнее</th>
               </tr>
             </thead>
             <tbody class="table-striped">
-              <tr class>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
+              <tr v-for="item in fetchData" :key="item.id">
+                <td class="p-4">{{ item.id }}</td>
+                <td class="p-4">{{ item.user.first_name + " " + item.user.last_name }}</td>
+                <td class="p-4">{{ joinPlatforms(item.is_tg, item.is_vk) }}</td>
+                <td class="p-4">{{ item.created_at }}</td>
+                <td class="p-4">{{ item.id }}</td>
               </tr>
             </tbody>
           </table>
@@ -108,6 +108,7 @@
 
 <script>
 import ImageUploadPreview from "@/components/ImageUploadPreview.vue";
+import MailingService from "@/api/MailingService";
 export default {
   components: { ImageUploadPreview },
   data() {
@@ -115,7 +116,7 @@ export default {
       uploadConfig: {
         onceImage: false,
       },
-
+      fetchData: null,
       dataToSend: {
         mail: null,
         whereTo: null,
@@ -128,6 +129,27 @@ export default {
     checkMethod() {
       console.log(this.dataToSend, this.dataToSend.whereTo.split(","));
     },
+    joinPlatforms(is_tg, is_vk) {
+      if (is_tg && is_vk) {
+        return 'TG, VK'
+      } else if(is_tg) {
+        return 'TG'
+      } else {
+        return 'VK'
+      }
+    }
+  },
+  computed: {
+    /* joinPlatforms(is_tg, is_vk) {
+      return is_tg
+    } */
+  },
+  mounted() {
+    MailingService.getMail(10, 0).then((data) => {
+      this.fetchData = data.data.result;
+      console.log(this.fetchData[0].is_tg);
+      
+    });
   },
 };
 </script>

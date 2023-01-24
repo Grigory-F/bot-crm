@@ -1,19 +1,17 @@
-import http from '@/http-common.js'
+import http from "@/http-common.js";
 
 class MailingService {
-    basePathApiService = "mailing/create"
-    create(mailParams) {
-        return http.post(
-            this.basePathApiService,
-            {
-                params: {
-                    "is_test_send": mailParams.test,
-                    "message": mailParams.message,
-                    "platforms": mailParams.whereToSend,
-                    "postponed_time": mailParams.time,
-                    "media": mailParams.filesArray
+  basePathApiService = "mailing/";
+  createMail(mailParams) {
+    return http.post(`${this.basePathApiService}create`, {
+      params: {
+        is_test_send: mailParams.test,
+        message: mailParams.message,
+        platforms: mailParams.whereToSend,
+        postponed_time: mailParams.time,
+        media: mailParams.filesArray,
 
-                    /* [
+        /* [
                         {
                             "filename": "image",
                             "ext": "jpeg",
@@ -21,16 +19,12 @@ class MailingService {
                         },
                         ...
                     ] */
-                },
-                headers: {
-                    Authorization: localStorage.getItem('token'),
-                    "Content-Type": "application/json"
-                },
-            })
-    }
-    tokenVerification() {
-        return http.get(this.basePathApiService)
-    }
+      },
+    });
+  }
+  getMail(count, page) {
+    return http.get(`${this.basePathApiService}?count=${count}&page=${page}`);
+  }
 }
 
-export default new AuthService()
+export default new MailingService();

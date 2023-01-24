@@ -30,17 +30,6 @@ import FeedbackService from "@/api/FeedbackService.js";
 export default {
   data() {
     return {
-      datass: {
-        email: "admin@example.com",
-        password: "admin",
-      },
-      messagesCount: 0,
-      newDatas: [
-        { a: "stst", c: "wwwws" },
-        { a: "stst", c: "wwwsws" },
-        /* { a: "wait", c: "wwwws" }, */
-        { a: "stst", c: "wwwws" },
-      ],
     };
   },
   computed: {
